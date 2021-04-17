@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/IndexFragment"
+        android:icon="@drawable/organization"
+        android:title="订单管理" />
+    <item
+        android:id="@+id/ShopFragment"
+        android:icon="@drawable/shop"
+        android:title="商品管理" />
+    <item
+        android:id="@+id/PersonFragment"
+        android:icon="@drawable/person"
+        android:title="个人中心" />
+</menu>

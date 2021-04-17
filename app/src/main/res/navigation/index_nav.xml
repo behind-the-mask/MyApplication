@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/index_nav"
+    app:startDestination="@id/IndexFragment">
+
+    <fragment
+        android:id="@+id/IndexFragment"
+        android:name="example.com.myapplication.Fragment.IndexFragment"
+        android:label="订单管理"
+        tools:layout="@layout/fragment_index" />
+    <fragment
+        android:id="@+id/ShopFragment"
+        android:name="example.com.myapplication.Fragment.ShopFragment"
+        android:label="商品管理"
+        tools:layout="@layout/fragment_shop" />
+    <fragment
+        android:id="@+id/PersonFragment"
+        android:name="example.com.myapplication.Fragment.PersonFragment"
+        android:label="个人中心"
+        tools:layout="@layout/fragment_person" />
+</navigation>
