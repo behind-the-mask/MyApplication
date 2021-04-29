@@ -41,7 +41,6 @@ public class PersonFragment extends Fragment {
         binding.privacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(),"添加成功",Toast.LENGTH_SHORT).show();
                 NavController controller = Navigation.findNavController(view);
                 controller.navigate(R.id.action_PersonFragment_to_settingFragment);
             }

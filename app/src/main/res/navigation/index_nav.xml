@@ -14,7 +14,16 @@
         android:id="@+id/ShopFragment"
         android:name="example.com.myapplication.Fragment.ShopFragment"
         android:label="商品管理"
-        tools:layout="@layout/fragment_shop" />
+        tools:layout="@layout/fragment_shop" >
+        <action
+            android:id="@+id/action_ShopFragment_to_addFoodFragment"
+            app:destination="@id/addFoodFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_ShopFragment_to_fixFoodFragment"
+            app:destination="@id/fixFoodFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
     <fragment
         android:id="@+id/PersonFragment"
         android:name="example.com.myapplication.Fragment.PersonFragment"
@@ -29,4 +38,14 @@
         android:name="example.com.myapplication.Fragment.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/addFoodFragment"
+        android:name="example.com.myapplication.Fragment.AddFoodFragment"
+        android:label="fragment_add_food"
+        tools:layout="@layout/fragment_add_food" />
+    <fragment
+        android:id="@+id/fixFoodFragment"
+        android:name="example.com.myapplication.Fragment.FixFoodFragment"
+        android:label="fragment_fix_food"
+        tools:layout="@layout/fragment_fix_food" />
 </navigation>

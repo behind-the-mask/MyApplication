@@ -12,22 +12,25 @@
         android:layout_height="match_parent"
         tools:context=".Fragment.ShopFragment">
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addshop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline12"
+            app:layout_constraintVertical_bias="0.89"
+            app:srcCompat="@drawable/ic_add_white_24dp" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.1" />
-
-        <ImageView
-            android:id="@+id/addshop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            app:srcCompat="@drawable/ic_add_black_24dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline12"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/shoptitle"
@@ -42,16 +45,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/deleteallshop"
-            android:layout_width="36dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:src="@drawable/bin"
-            app:layout_constraintBottom_toTopOf="@+id/guideline12"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerviewshop"
             android:layout_width="0dp"
@@ -60,5 +53,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline12" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/deleteallshop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:src="@drawable/bin_white"
+            app:backgroundTint="#1975A0"
+            app:layout_constraintBottom_toTopOf="@+id/addshop"
+            app:layout_constraintEnd_toEndOf="@+id/addshop"
+            app:layout_constraintStart_toStartOf="@+id/addshop" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
