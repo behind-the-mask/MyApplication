@@ -21,5 +21,6 @@ public class IndexActivity extends AppCompatActivity {
         AppBarConfiguration configuration = new AppBarConfiguration.Builder(bottomNavigationView.getMenu()).build();
         NavigationUI.setupActionBarWithNavController(this,navController,configuration);
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
+        getSupportActionBar().hide();
     }
 }

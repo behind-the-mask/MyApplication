@@ -19,5 +19,14 @@
         android:id="@+id/PersonFragment"
         android:name="example.com.myapplication.Fragment.PersonFragment"
         android:label="个人中心"
-        tools:layout="@layout/fragment_person" />
+        tools:layout="@layout/fragment_person" >
+        <action
+            android:id="@+id/action_PersonFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="example.com.myapplication.Fragment.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
 </navigation>
