@@ -18,6 +18,19 @@ public class MyViewModel extends AndroidViewModel {
     String shp_name = getApplication().getResources().getString(R.string.shp_name);
     private FoodRepository foodRepository;
 
+    public Food getFixedfood() {
+        if(Fixedfood == null){
+            Fixedfood = new Food("","","");
+        }
+        return Fixedfood;
+    }
+
+    public void setFixedfood(Food Fixedfood) {
+        this.Fixedfood = Fixedfood;
+    }
+
+    private Food Fixedfood;
+
     public MyViewModel(@NonNull Application application, SavedStateHandle handle) {
         super(application);
 
@@ -51,6 +64,10 @@ public class MyViewModel extends AndroidViewModel {
 
     public LiveData<List<Food>> getAllFoodsLive() {
         return foodRepository.getAllFoodsLive();
+    }
+
+    public LiveData<List<Food>> findWordsWithPattern(String pattern) {
+        return foodRepository.findWordsWithPattern(pattern);
     }
 
     public void insertFoods(Food... foods) {

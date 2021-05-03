@@ -16,14 +16,29 @@ import androidx.lifecycle.SavedStateViewModelFactory;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.AsyncDifferConfig;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-    private List<Food> allFoods = new ArrayList<>();
+public class MyAdapter extends ListAdapter<Food,MyAdapter.MyViewHolder> {
     MyViewModel myViewModel;
 
-    public void setAllFoods(List<Food> allFoods) {
-        this.allFoods = allFoods;
+    public MyAdapter(MyViewModel myViewModel){
+        super(new DiffUtil.ItemCallback<Food>() {
+            @Override
+            public boolean areItemsTheSame(@NonNull Food oldItem, @NonNull Food newItem) {
+                return oldItem.getId() == newItem.getId();
+            }
+
+            @Override
+            public boolean areContentsTheSame(@NonNull Food oldItem, @NonNull Food newItem) {
+                return (oldItem.getFoodname().equals(newItem.getFoodname())
+                        && oldItem.getPrice().equals(newItem.getPrice())
+                        && oldItem.getIntroduction().equals(newItem.getIntroduction()));
+            }
+        });
+        this.myViewModel = myViewModel;
     }
 
     @NonNull
@@ -34,18 +49,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         View itemView;
         itemView = layoutInflater.inflate(R.layout.cell_card,parent,false);
         final MyViewHolder holder = new MyViewHolder(itemView);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Food food = (Food)holder.itemView.getTag(R.id.word_for_view_holder);
-                Toast.makeText(holder.itemView.getContext(),"商品id是："+food.getId(),Toast.LENGTH_SHORT).show();
-                Bundle bundle = new Bundle();
-                bundle.putString("foodname",food.getFoodname());
-                bundle.putInt("foodid",food.getId());
-                bundle.putString("foodintroduction",food.getIntroduction());
-                bundle.putString("foodprice",food.getPrice());
+                myViewModel.setFixedfood(food);
                 NavController controller = Navigation.findNavController(view);
-                controller.navigate(R.id.action_ShopFragment_to_fixFoodFragment,bundle);
+                controller.navigate(R.id.action_ShopFragment_to_fixFoodFragment);
             }
         });
         return holder;
@@ -53,7 +63,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
-        final Food food = allFoods.get(position);
+        final Food food = getItem(position);
         holder.itemView.setTag(R.id.word_for_view_holder,food);
         holder.textViewNumber.setText(String.valueOf(position+1));
         holder.textViewName.setText(food.getFoodname());
@@ -62,12 +72,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     @Override
-    public int getItemCount() {
-        return allFoods.size();
+    public void onViewAttachedToWindow(@NonNull MyViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+        holder.textViewNumber.setText(String.valueOf(holder.getAdapterPosition()+1));
     }
 
-    static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView textViewNumber,textViewName,textViewIntroduction,textViewPrice;
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
+        public TextView textViewNumber,textViewName,textViewIntroduction,textViewPrice;
         ImageView back;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);

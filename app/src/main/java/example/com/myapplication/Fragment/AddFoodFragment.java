@@ -5,6 +5,7 @@ import android.content.Context;
 import android.hardware.input.InputManager;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethod;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import androidx.lifecycle.SavedStateViewModelFactory;
 import androidx.lifecycle.ViewModelProvider;
@@ -33,6 +35,7 @@ public class AddFoodFragment extends Fragment {
     MyViewModel myViewModel;
     FragmentAddFoodBinding fragmentAddFoodBinding;
 
+
     public AddFoodFragment() {
         // Required empty public constructor
     }
@@ -47,11 +50,12 @@ public class AddFoodFragment extends Fragment {
         fragmentAddFoodBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_add_food,container,false);
         fragmentAddFoodBinding.setLifecycleOwner(requireActivity());
         fragmentAddFoodBinding.submit.setEnabled(false);
-
-        InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        if(imm != null){
         fragmentAddFoodBinding.foodname.requestFocus();
-        imm.showSoftInput(fragmentAddFoodBinding.foodname,0);}
+//        InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+//        if(imm != null){
+//        fragmentAddFoodBinding.foodname.requestFocus();
+//        imm.showSoftInput(fragmentAddFoodBinding.foodname,0);}
+
 
         TextWatcher textWatcher = new TextWatcher() {
             @Override
@@ -87,7 +91,23 @@ public class AddFoodFragment extends Fragment {
             }
         });
 
+        fragmentAddFoodBinding.back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavController controller = Navigation.findNavController(view);
+                controller.navigate(R.id.ShopFragment);
+            }
+        });
+
         return fragmentAddFoodBinding.getRoot();
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.showSoftInput(fragmentAddFoodBinding.foodname,0);
+        }
+    }
 }

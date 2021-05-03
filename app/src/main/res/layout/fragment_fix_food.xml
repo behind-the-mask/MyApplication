@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="data"
+            type="example.com.myapplication.MyViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,6 +35,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:ems="10"
+            android:text="@{data.getFixedfood().getFoodname()}"
             android:hint="商品名"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -47,6 +50,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="请输入简介"
+            android:text="@{data.getFixedfood().getIntroduction()}"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/foodname"
@@ -72,11 +76,21 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="商品价格"
+            android:text="@{data.getFixedfood().getPrice()}"
             android:inputType="numberDecimal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/foodintroduction"
             app:layout_constraintStart_toStartOf="@+id/foodintroduction"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.4" />
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView4"
+            app:layout_constraintStart_toStartOf="@+id/foodname"
+            app:layout_constraintTop_toTopOf="@+id/textView4"
+            app:srcCompat="@drawable/ic_keyboard_arrow_left_black_36dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

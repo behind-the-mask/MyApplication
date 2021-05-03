@@ -27,4 +27,8 @@ public interface FoodDao {
         //List<Food> getAllFoods();
     LiveData<List<Food>> getAllFoodsLive();
 
+    @Query("SELECT * FROM FOOD WHERE food_name LIKE :pattern ORDER BY ID DESC")
+        //List<Food> getAllFoods();
+    LiveData<List<Food>> findWordsWithPattern(String pattern);
+
 }

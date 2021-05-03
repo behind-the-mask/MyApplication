@@ -33,8 +33,13 @@ public class FoodRepository {
     void deleteAllFoods(){
         new DeleteAllAsyncTask(foodDao).execute();
     }
+
     public LiveData<List<Food>> getAllFoodsLive() {
         return allFoodsLive;
+    }
+
+    public LiveData<List<Food>> findWordsWithPattern(String pattern) {
+        return foodDao.findWordsWithPattern("%"+pattern+"%");
     }
 
     static class InsertAsyncTask extends AsyncTask<Food,Void,Void>{
